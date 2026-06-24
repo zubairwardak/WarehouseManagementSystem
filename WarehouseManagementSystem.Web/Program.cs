@@ -1,18 +1,22 @@
 using Microsoft.EntityFrameworkCore;
 using WarehouseManagementSystem.Infrastructure.Persistence;
+using WarehouseManagementSystem.Infrastructure;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<ApplicationDbContext>(
-    options =>
-    {
-        options.UseSqlServer(
-            builder.Configuration.GetConnectionString(
-                "DefaultConnection"));
-    });
+builder.Services.AddInfrastructure(builder.Configuration);
+
+//builder.Services.AddDbContext<ApplicationDbContext>(
+//    options =>
+//    {
+//        options.UseSqlServer(
+//            builder.Configuration.GetConnectionString(
+//                "DefaultConnection"));
+//    });
 
 var app = builder.Build();
 
