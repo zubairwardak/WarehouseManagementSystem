@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WarehouseManagementSystem.Infrastructure.Persistence;
 using WarehouseManagementSystem.Infrastructure;
-
+using WarehouseManagementSystem.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +19,15 @@ builder.Services.AddInfrastructure(builder.Configuration);
 //    });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var context =
+        scope.ServiceProvider
+             .GetRequiredService<ApplicationDbContext>();
+
+    await DbSeeder.SeedAsync(context);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
