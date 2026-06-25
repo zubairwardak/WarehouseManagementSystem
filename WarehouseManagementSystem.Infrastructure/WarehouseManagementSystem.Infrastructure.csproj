@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WarehouseManagementSystem.Domain\WarehouseManagementSystem.Domain.csproj" />
-    <ProjectReference Include="..\WarehouseManagementSystem.Application\WarehouseManagementSystem.Application.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
